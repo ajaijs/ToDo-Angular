@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html ng-app = "app">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <title> To Do Lis - Angular </title>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script><script src="App.js"></script>
+    <script src="COntrollers.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <style>
+        body{
+            background-color: #f7ecb5;
+        }
+        tr{
+            background:silver;
+        }
+        .strike{
+            text-decoration:line-through;
+            color: grey;
+        }
+        input:required:invalid{
+            border-color: red;
+            -webkit-box-shadow: none;
+        }
+        input:focus:valid
+        {
+            border-color:lawngreen;
+            -webkit-box-shadow: none;
+        }
+
+
+    </style>
+</head>
+<body class="container">
+<br>
+
+<div ng-controller="todoController">
+    <div class="jumbotron">
+        <h1> You Have {{lengths}} Tasks to do..</h1>
+
+    </div>
+
+    <div class="jumbotron">
+        Enter the Task Name: <input type="text" ng-model="taskName" autofocus required>
+        Enter the Due Date:  <input type="date" ng-model="taskDate" required>
+        <input type="button" class="btn btn-primary" value="Add Task" ng-click="addData()">
+    </div>
+
+    <div class="jumbotron">
+
+        <table class="table table-bordered">
+            <thead>
+            <tr class="alert-success">
+               <th> Selector</th>
+                <th> Task Name</th>
+                <th> Due Date</th>
+            </tr>
+            </thead>
+            <tbody ng-repeat="data in tasks">
+            <tr>
+                <td><input type="checkbox" ng-model="deleted" ng-click="check($index)"> </td>
+                <td ng-class='{strike:deleted}'>{{data.TaskName}} </td>
+                <td ng-class='{strike:deleted}'>{{data.TaskDate | date:'MM-dd-yyyy'}} </td>
+            </tr>
+            </tbody>
+        </table>
+        <input type="button" class="btn btn-danger" value="Delete" ng-click="deleteData()" ng-show="deleteBtn">
+    </div>
+</div>
+
+</body>
+</html>
