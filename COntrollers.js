@@ -8,10 +8,8 @@ app.controller('todoController', function($scope){
     function init()
     {
         $scope.lengths = $scope.tasks.length;
-
     }
     init()
-
 
     $scope.addData = function () {
 
@@ -36,17 +34,13 @@ app.controller('todoController', function($scope){
             tname= "";
             tdate="";
         }
-
     }
-
     $scope.deleteData= function() {
         $scope.tasks.splice(checkIndex, 1)
 
         init();
         $scope.deleteBtn = false
     }
-
-
     $scope.check = function(index){
         checkIndex = index;
         $scope.deleteBtn = true;
